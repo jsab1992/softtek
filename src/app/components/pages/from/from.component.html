@@ -1,0 +1,78 @@
+<h1 class="text-center font-weight-bold">Formulario Empleados</h1>
+<div class="row text-right">
+  <div class="col">
+    <button class="btn btn-primary mb-5 mt-5" routerLink="/table">
+      <i class="fa fa-arrow-left"></i>
+      Mostar Empleados
+    </button>
+  </div>
+</div>
+
+<div class="col-md-6 col-sm-12 container animated fadeIn faster">
+  <form (ngSubmit)="guardar(f)" #f="ngForm">
+    <div class="form-group">
+      <label>ID Empleados</label>
+      <input
+        type="text"
+        disabled="disabled"
+        placeholder="ID Empleado"
+        class="form-control"
+        name="id"
+        [(ngModel)]="empleado.id"
+      />
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Nombre:</label>
+      <input
+        type="text"
+        class="form-control"
+        [class.is-invalid]="name.invalid && name.touched"
+        name="name"
+        required
+        minlength="5"
+        [(ngModel)]="empleado.name"
+        #name="ngModel"
+      />
+      <small
+        *ngIf="name.invalid && name.touched"
+        class="form-text text-danger"
+        >El correo es obligatorio</small>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label for="exampleInputPassword1">CIF:</label>
+        <input
+          type="text"
+          class="form-control"
+          name="cif"
+          [(ngModel)]="empleado.cif"
+        />
+      </div>
+      <div class="form-group col-md-6">
+        <label for="exampleInputPassword1">Dirección:</label>
+        <input
+          type="text"
+          class="form-control"
+          name="dir"
+          [(ngModel)]="empleado.dir"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Grupo:</label>
+      <select class="form-control" name="grupo" [(ngModel)]="empleado.grupo" >
+        <option *ngFor="let item of empleado.grupo " [value]="item">
+          {{ item }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group text-center">
+      <button type="submit" class="btn btn-primary w-100">
+        <i class="fa fa-save"></i>
+        Crear
+      </button>
+    </div>
+  </form>
+</div>
